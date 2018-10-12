@@ -11,7 +11,7 @@ df1$income %>% range()
 df1$paytaxes <- df1$paytaxes %>% as.ordered()
 df1$sex <- df1$sex %>% as.factor()
 # #just an example of how as.ordered() works
-# #uncomment and run if you want to see how it works :)git
+# #uncomment and run if you want to see how it works :)git lol I guess that's where my git command went XD
 # x <- c(1,2,1,2,4,3,2,1,2,3,2,3,2,1,1,1,1,1)
 # x <- as.ordered(x)
 # str(x)
@@ -63,5 +63,19 @@ df3$paytaxes <- df3$paytaxes %>% as.ordered()
 df3$sex <- df3$sex %>% as.factor()
 df3$gssOrEss <- df3$gssOrEss %>% as.factor()
 df3$income <- df3$income %>% as.ordered()
+df3$year <- as.factor(df3$year)
+
+library("MASS")
+form <- "paytaxes ~ gssOrEss + year + income + age + sex"
+fm1 <- polr(form, data = df3,  method = "logistic")
+# dv paytaxes, independant varaible hypothesis testing: gssOrEss
+# Gss is all USA respondants
+# Ess was subsetted to only have italian respondants
+# decided not t use weights. 
+summary(fm1)
 
 
+# what happens if I fit the model with weights
+# not sure it makes sense to use these weights this way. *shrug*
+fm2 <- polr( form, data = df3, weights = weight, method = "logistic")
+summary(fm2)
