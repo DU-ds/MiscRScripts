@@ -64,6 +64,8 @@ df3$sex <- df3$sex %>% as.factor()
 df3$gssOrEss <- df3$gssOrEss %>% as.factor()
 df3$income <- df3$income %>% as.ordered()
 df3$year <- as.factor(df3$year)
+df3 %>% str()
+
 
 library("MASS")
 form <- "paytaxes ~ gssOrEss + year + income + age + sex"
