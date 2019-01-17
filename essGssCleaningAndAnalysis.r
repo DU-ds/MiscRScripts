@@ -52,9 +52,25 @@ df2 %>% write.table(file = "R:/R_WD/Thesis/JustDeserts/WorldValuesSurvey/ESSGSSC
 # #I ran this but I commented it in case anyone else trys to run my code :)
 
 
+
+
+
+
+
 df3 <- read.table(file = "R:/R_WD/Thesis/JustDeserts/WorldValuesSurvey/ESSGSSCombinedDataset2.txt", sep = "|", header = TRUE )
 
 df3 %>% str()
+df3$gssOrEss %>% hist
+
+df3$gssOrEss2 <- -1 * df3$gssOrEss
+df3$gssOrEss2 <-  df3$gssOrEss2 + 2
+hist(df3$gssOrEss2) #now that it's been swapped, need to reassign to gssOrEss
+df3$gssOrEss <- df3$gssOrEss2
+hist(df3$gssOrEss)
+df3$gssOrEss2 <- NULL #removes variable from df3
+#df3$gssOrEss <- df3$gssOrEss - 1 #Realized I needed to swap the ordering and make it a 0/1 dummy
+#df3$gssOrEss %>% str()
+
 
 df3$paytaxes <- df3$paytaxes %>% as.ordered()
 #paytaxes is needed to fit the model using polr
@@ -65,6 +81,11 @@ df3$gssOrEss <- df3$gssOrEss %>% as.factor()
 df3$income <- df3$income %>% as.ordered()
 df3$year <- as.factor(df3$year)
 df3 %>% str()
+
+
+
+
+
 
 
 library("MASS")
