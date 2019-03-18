@@ -27,5 +27,15 @@ for(i in 1:10) #0:10 would cause a divide by zero issue
 {
 	print(log((tau)^i,a)/log((tau)^i,b))
 }
+for (i in 1:10)
+{
+	print(log((tau)^i,a)/log(10,exp(1)))
+	print(log10((tau)^i))
+	print("================")
+}
 
-
+log_2 <- function(x)
+{
+	log(x)/log(2)
+}
+#log2 already exists
