@@ -1,5 +1,5 @@
 
-# Hormonic Series
+# Harmonic Series
 
 # How We Got From There To Here:
 # A Story of Real Analysis
@@ -30,3 +30,13 @@ for(i in 1:n3)
 }
 
 a3
+
+
+n4 <- 100
+a4 <- 0
+for(i in 1:n4)
+{
+	a4 <- (a4 + (1/i))
+}
+
+print(a4)
