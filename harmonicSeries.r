@@ -3,7 +3,8 @@
 
 # How We Got From There To Here:
 # A Story of Real Analysis
-# page 130 - 132
+# rate of convergence: page 130 - 132, 
+# Harmonic Series also appears on pages 56 and 150.
 n <- 10^9
 a <- 0
 for (i in 1:n) {
