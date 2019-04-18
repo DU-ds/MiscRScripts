@@ -1,0 +1,12 @@
+# https://www.hackerrank.com/challenges/s10-binomial-distribution-1/problem
+pr <- 0.12
+batchsize <- 10
+n <- 1000000
+x<- rbinom(n = n, size = batchsize, prob = pr)
+
+nomorethan2 <- ifelse(x < 3, 1, 0)
+twoplus <-  ifelse(x < 2, 0, 1)
+lessthan3 <- sum(nomorethan2) / n
+morethan2 <- sum(twoplus) / n
+cat(sprintf("%.3f\n", lessthan3))
+cat(sprintf("%.3f", morethan2))
