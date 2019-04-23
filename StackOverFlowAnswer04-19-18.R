@@ -1,6 +1,5 @@
 #my answer to this question:
-#https://stackoverflow.com/questions/55764091/ordering-a-matrix-to-have-the-maximum-value-in-each-diagonal/55765727#55765727
-# base R docs:
+#https://stackoverflow.com/questions/55764091/ordering-a-matrix-to-have-the-maximum-value-in-each-diagonal/# base R docs:
 # https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html
 vals <- c(11,0,10,0,  1,22,49,46,  0, 77, 34, 31,   66, 18, 48, 49)
 mat <- matrix(vals, nrow = 4)
