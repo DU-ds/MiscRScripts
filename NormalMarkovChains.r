@@ -24,4 +24,9 @@ plot(S[122,])
 
 v <- colMeans(S)
 plot(v)
+fit <-  loess(v ~ c(1:(length(v))), family = "gaussian", method = "loess")
+lines(fit)
 
+plot(v)
+fit2 <-  loess(v ~ c(1:(length(v))), family = "symmetric", method = "loess")
+lines(fit2)
