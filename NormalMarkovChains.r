@@ -14,9 +14,14 @@ S[,1] <- 0
 for(j in 1:nrows){
 
 	for(i in 1:(ncols -1 )){
-		S[j, i+1] <-  rnorm(1, mean = S[i], sd = 1)
+		S[j, i+1] <-  rnorm(1, mean = S[j, i], sd = 1)
 	}
 }
 
-# plot(S)
+plot(S[1,])
+plot(S[2,])
+plot(S[122,])
+
+v <- colMeans(S)
+plot(v)
 
