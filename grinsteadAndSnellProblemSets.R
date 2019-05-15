@@ -111,3 +111,39 @@ cat("large:", mean(hospitalLargeOver60Percent), "small:", mean(hospitalSmallOver
 # so b. Makes sense, since it must be an integer number of boys 
 # smaller hospital has over 60% with less boys over expected value
 # if it were not discrete, wouldnt expect a difference
+
+
+# 12: Poll simulation
+
+percentDem1 <- 52
+percentRep1 <- 48
+n1 <- 1000
+n2 <- 3000
+numSims <- 100
+percentRep2 <- 49
+percentDem2 <- 51
+
+dem <- function(percentDem, n = n){
+		poll <- runif(n, min=0, max = 1)
+		v <- ifelse(poll <= percentDem/100, 1, 0)
+		return(mean(v))
+}
+
+simDemVsRep <- function(percent, n, size){
+	v <- rep(percent, size)
+	v <- mapply(FUN = dem, v, MoreArgs = list(n = n))
+	return(v)
+}
+
+vPoll <- simDemVsRep(percentDem1, n = n1,size = numSims)
+plot(vPoll)
+abline(a = 1/2, b = 0)
+vPoll <- ifelse(vPoll > .5, 1, 0) #returns one if dems win
+percentageOfDemWins1 <- mean(vPoll)
+
+vPoll2 <- simDemVsRep(percentDem2, n = n1, size = numSims)
+vPoll3 <- simDemVsRep(percentDem2, n = n2, size = numSims)
+percentageOfDemWins2 <-mean(vPoll2)
+percentageOfDemWins3 <-mean(vPoll3)
+#seems close elections are harder to poll, which makes sense
+cat("First Simulation: ", percentageOfDemWins1, "\nSecond Simulation: ", percentageOfDemWins2, "\nThird Simulation: ", percentageOfDemWins3, "\n")
