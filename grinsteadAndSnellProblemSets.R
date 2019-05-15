@@ -106,4 +106,8 @@ hospitalSmall <- vapply(hospitalSmall, FUN = simHospitalSmall, FUN.VALUE = c(9.9
 hospitalLargeOver60Percent <- ifelse(hospitalLarge > .6, 1, 0 )
 hospitalSmallOver60Percent <- ifelse(hospitalSmall > .6, 1, 0 )
 
-cat(mean(hospitalLargeOver60Percent), mean(hospitalSmallOver60Percent), "\n")
+cat("large:", mean(hospitalLargeOver60Percent), "small:", mean(hospitalSmallOver60Percent), "\n")
+
+# so b. Makes sense, since it must be an integer number of boys 
+# smaller hospital has over 60% with less boys over expected value
+# if it were not discrete, wouldnt expect a difference
