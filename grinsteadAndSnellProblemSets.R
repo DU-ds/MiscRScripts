@@ -147,3 +147,61 @@ percentageOfDemWins2 <-mean(vPoll2)
 percentageOfDemWins3 <-mean(vPoll3)
 #seems close elections are harder to poll, which makes sense
 cat("First Simulation: ", percentageOfDemWins1, "\nSecond Simulation: ", percentageOfDemWins2, "\nThird Simulation: ", percentageOfDemWins3, "\n")
+
+# 14
+
+
+
+game14sim <- function(x){
+	j <- 0
+	won <- FALSE
+	while(!won){
+		a <- runif(1)
+		if(a >= 1/2){
+			won <- TRUE
+		}
+		j <- j + 1
+	}
+	payoff <- 2^j
+	return(payoff)
+}
+
+
+n <- 1000
+v <- vector(mode = "integer", length = n)
+v <- vapply(FUN = game14sim, v, FUN.VALUE = c(2))
+v %>% summary
+#hmm really HUGE outlier of over 16k
+#rerun, max is about 2k
+#lets get the mean of means
+
+
+game14sim2 <- function(n2){
+	mat <- matrix(nrow = n, ncol = n2)
+	for(i in 1:n2){
+		mat[,i] <- vapply(FUN = game14sim, v, FUN.VALUE = c(2))
+	}
+	means <- colMeans(mat)
+	return(means)
+}
+
+n2 <- 200
+vMeans <- game14sim2(n2)
+vMeans %>% summary
+
+
+game14sim3 <- function(n2){
+	mat <- matrix(nrow = n, ncol = n2)
+	for(i in 1:n2){
+		mat[,i] <- vapply(FUN = game14sim, v, FUN.VALUE = c(2))
+	}
+	return(mat)
+}
+
+# it seems the median is always around 2 - 4 but the mean is over ten.
+# so if only allowed a specific number of plays, say 100
+# I wouldnt pay more than 2
+#but with arbitrary number of games (and I can stop any time)
+# I might be willing to bet more, say up to ~$8, 
+# but I would need to start with enough funds to be able to lose money many times. 
+# If I had a pretty limited amount of money, I would not bet more than $4
