@@ -205,3 +205,76 @@ game14sim3 <- function(n2){
 # I might be willing to bet more, say up to ~$8, 
 # but I would need to start with enough funds to be able to lose money many times. 
 # If I had a pretty limited amount of money, I would not bet more than $4
+
+
+# 6 Las Vegas Roulette
+nSlots <- 38
+nGreen <- 2
+nRed <- (nSlots-nGreen)/2
+nBlack <- nRed
+n <- 1000
+
+
+spin <- function(slots, red){
+	val <- ceiling(slots * runif(1))
+	if(val <= red) {
+		return(1)
+	}
+	else {
+		return(-1)
+	}
+}
+spin6 <- function(x){
+	spin(nSlots, nRed) %>% return
+}
+
+spin62 <- function(x){(val <- ceiling(nSlots * runif(1)))}
+
+
+bets <- vector(mode="integer", length = n) %>% 
+		vapply(FUN = spin6,FUN.VALUE= c(10)) 
+(nbets <- bets %>% sum)
+bets %>% hist
+
+nspins <- vector(mode="integer", length = n) %>% 
+		vapply(FUN = spin62,FUN.VALUE= c(10)) 
+
+# answer: 
+nbets
+
+
+# 3
+
+nDice <- 3
+nSides <- 6
+n <- 10000
+
+roll <- function(d){
+	val <- ceiling(d * runif(1))
+}
+
+sumOfROlls <- function(n, d){
+	rep(d, n) %>%
+		vapply( FUN = roll, FUN.VALUE = c(10)) %>%
+		sum %>%
+		return
+}
+sumOfROlls3 <- function(x){
+	sumOfROlls(nDice, nSides)
+}
+
+
+v <- vector(mode = "integer", length = n) %>% 
+	vapply(FUN = sumOfROlls3, FUN.VALUE = c(1))
+
+# 3 a)
+
+(nTen <- mean(v==10))
+(nNine <- mean(v==9))
+
+# 3 b)
+# I conclude that the gamblers were correct
+
+
+
+# 17
