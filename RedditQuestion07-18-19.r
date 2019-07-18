@@ -2,13 +2,13 @@
 k <- 31
 mu <- 6
 std <- 0.22
-n <- 100000000
+n <- 1000000
 v <- c()
 
 for(i in 1:n){
     rand_draw <- rnorm(k, mean = mu, sd = std)
     bool <- ifelse(rand_draw > 6, 1, 0)
-    bool <- sum(bool) >= 17
+    bool <- sum(bool) >= ceiling(0.52*k)
     v <- c(v, bool)
 }
 print(sum(v)/n) #part 2
