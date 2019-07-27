@@ -11,3 +11,4 @@ is.matrix(x)
 
 y <- c(1,2,3,4)
 y %*% x
+# so discrete fourier transform is a rotation?
